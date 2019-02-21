@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalkulator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        button{
+            width: 65px;
+        }
+        #kalkulator{
+            width : 260px;
+            border : 1px solid;
+            margin-top : 15px;
+            padding : 10px;
+            background-color: aqua;
+        }
+        #buttonStyle{
+            padding: 0px;
+        }
+        #teksinput{
+            width: 260px;
+        }
+    </style>
+</head>
+<body>    
+    <div class='container' id='kalkulator'>
+        <div class='row justify-content-md-center'>
+            <input id='teksinput' readonly/>
+        </div>            
+        <div class='row justify-content-md-center'>
+            <button onclick="operatorClick(this.value)" value='+'>+</button>
+            <button onclick="operatorClick(this.value)" value='-'>-</button>
+            <button onclick="operatorClick(this.value)" value='x'>x</button>
+            <button onclick="operatorClick(this.value)" value='/'>/</button>
+        </div>
+        <div class='row justify-content-md-center'>
+                <button onclick="inputAngka(this.value)" value='7'>7</button>
+                <button onclick="inputAngka(this.value)" value='8'>8</button>
+                <button onclick="inputAngka(this.value)" value='8'>9</button>
+        </div>
+        <div class='row justify-content-md-center'>
+                <button onclick="inputAngka(this.value)" value='4'>4</button>
+                <button onclick="inputAngka(this.value)" value='5'>5</button>
+                <button onclick="inputAngka(this.value)" value='6'>6</button>
+        </div>
+        <div class='row justify-content-md-center'>
+                <button onclick="inputAngka(this.value)" value='1'>1</button>
+                <button onclick="inputAngka(this.value)" value='2'>2</button>
+                <button onclick="inputAngka(this.value)" value='3'>3</button>
+        </div>
+        <div class='row justify-content-md-center'>
+                <button onclick="inputAngka(this.value)" value='0'>0</button>
+                <button onclick="inputAngka(this.value)" value='.'>.</button>
+                <button onclick="AC()">AC</button>
+        </div>
+        <div class='row justify-content-md-center'>
+                <button onclick="hasilKalkulator()" value='='>=</button>
+        </div>
+    </div>
+    <script>
+        var input1='';
+        var input2='';
+        var hasil = 0;
+        var operator = '';
+        function inputAngka(e){
+            if(operator === ''){
+                input1+=e;
+                document.getElementById('teksinput').value=input1;
+            }
+            else {
+                input2+=e;
+                document.getElementById('teksinput').value=input2;
+            }
+            console.log(input1)
+            console.log(input2)
+            console.log(operator)
+        }
+        function operatorClick(e){
+            operator=e;
+            document.getElementById("teksinput").value='';
+        }
+        function AC(){
+            input1='';
+            input2='';
+            hasil = 0;
+            operator = '';
+            document.getElementById("teksinput").value='';
+        }
+        function hasilKalkulator(){
+            document.getElementById("teksinput").value='';
+            if(operator ==='-'){
+                hasil = parseFloat(input1) - parseFloat(input2);
+            }
+            else if(operator ==='+'){
+                hasil = parseFloat(input1) + parseFloat(input2);
+            }
+            else if(operator ==='x'){
+                hasil = parseFloat(input1) * parseFloat(input2);
+            }
+            else if(operator ==='/'){
+                hasil = parseFloat(input1) / parseFloat(input2);
+            }
+            document.getElementById("teksinput").value=hasil;
+
+        }
+    </script>
+</body>
+</html>
